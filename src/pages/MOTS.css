@@ -1,0 +1,72 @@
+/* src/pages/MOTS.css */
+/* src/pages/MOTS.css */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.mots-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mots-header {
+    width: 100vw; /* Ubah menjadi 100vw untuk memastikan seluruh lebar viewport */
+    height: 200px;
+    background-image: url('../assets/title-bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    margin-left: calc(-50vw + 50%); /* Menyeimbangkan gambar agar meluas ke tepi */
+  }
+  
+  .mots-title {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .mots-content {
+    display: flex;
+    width: 80%;
+    margin-top: 2rem;
+  }
+  
+  .mots-list {
+    flex: 1;
+    margin-right: 2rem;
+  }
+  
+  .mots-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .mots-list li {
+    cursor: pointer;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mots-list li:hover {
+    background-color: #ddd;
+  }
+  
+  .mots-description {
+    flex: 2;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  
