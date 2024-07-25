@@ -41,7 +41,7 @@ const sectionStyle = {
         <Row className="mb-4">
           <Col>
             <h2 style={titleStyle}>Layanan Frekuensi Radio</h2>
-            <p>Balai Monitor Spektrum Frekuensi Radio Kelas II Lampung</p>
+            <h5>Balai Monitor Spektrum Frekuensi Radio Kelas II Lampung</h5>
           </Col>
         </Row>
         <Row>

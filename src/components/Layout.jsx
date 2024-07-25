@@ -14,10 +14,10 @@ const layoutStyles = {
   layoutContainer: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh'
+    minHeight: '50vh'
   },
   mainContent: {
-    flex: 1
+    flex: 10
   },
   footerWrapper: {
     backgroundColor: '#f8f9fa'

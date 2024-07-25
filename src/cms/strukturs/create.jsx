@@ -3,21 +3,22 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 
-const CreateProfile = () => {
+const CreateStrukturPengurus = () => {
     const navigate = useNavigate();
     const { userId, token } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         nama: '',
-        posisi: '',
-        foto: null,
+        jabatan: '',
+        tipe: 'founder',
+        file: null,
         publishedAt: new Date().toISOString().slice(0, 16),
     });
 
     const [formErrors, setFormErrors] = useState({
         nama: '',
-        posisi: '',
-        foto: '',
+        jabatan: '',
+        file: '',
     });
 
     const handleInputChange = (e) => {
@@ -35,11 +36,11 @@ const CreateProfile = () => {
     const handleFileChange = (e) => {
         setFormData({
             ...formData,
-            foto: e.target.files[0],
+            file: e.target.files[0],
         });
         setFormErrors({
             ...formErrors,
-            foto: '',
+            file: '',
         });
     };
 
@@ -47,20 +48,20 @@ const CreateProfile = () => {
         let valid = true;
         const errors = {
             nama: '',
-            posisi: '',
-            foto: '',
+            jabatan: '',
+            file: '',
         };
 
         if (!formData.nama.trim()) {
             errors.nama = 'Nama harus diisi';
             valid = false;
         }
-        if (!formData.posisi.trim()) {
-            errors.posisi = 'Posisi harus diisi';
+        if (!formData.jabatan.trim()) {
+            errors.jabatan = 'Jabatan harus diisi';
             valid = false;
         }
-        if (!formData.foto) {
-            errors.foto = 'Foto harus diunggah';
+        if (!formData.file) {
+            errors.file = 'Foto harus diunggah';
             valid = false;
         }
 
@@ -77,32 +78,31 @@ const CreateProfile = () => {
 
         try {
             const formDataToSend = new FormData();
-            formDataToSend.append('file', formData.foto);
+            formDataToSend.append('file', formData.file);
             formDataToSend.append('nama', formData.nama);
-            formDataToSend.append('posisi', formData.posisi);
+            formDataToSend.append('jabatan', formData.jabatan);
             formDataToSend.append('publishedAt', formData.publishedAt);
+            formDataToSend.append('tipe', formData.tipe);
 
-            await axios.post(`http://localhost:3000/profiles/${userId}`, formDataToSend, {
+            await axios.post(`http://localhost:3000/struktur-penguruses/${userId}`, formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`
                 }
             });
 
-            navigate('/admin/profile');
+            navigate('/admin/struktur');
         } catch (error) {
-            console.error('Error creating profile:', error);
+            console.error('Error creating data:', error);
         }
     };
 
     return (
-        <div className="container py-5 mt-5">
-            <h1 className="text-center mb-5">Create New Profile</h1>
-            <form onSubmit={onSubmit} encType="multipart/form-data" className="card p-4 shadow">
+        <div className="container py-4 mt-5">
+            <h1 className="text-center mb-4">Create New Struktur Pengurus</h1>
+            <form onSubmit={onSubmit} className="mx-auto p-4 bg-light rounded shadow-sm" style={{ maxWidth: '600px' }}>
                 <div className="mb-3">
-                    <label htmlFor="nama" className="form-label">
-                        Nama
-                    </label>
+                    <label htmlFor="nama" className="form-label">Nama</label>
                     <input
                         type="text"
                         id="nama"
@@ -110,53 +110,59 @@ const CreateProfile = () => {
                         value={formData.nama}
                         onChange={handleInputChange}
                         className={`form-control ${formErrors.nama ? 'is-invalid' : ''}`}
-                        placeholder="Masukkan nama"
                     />
                     {formErrors.nama && <div className="invalid-feedback">{formErrors.nama}</div>}
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="posisi" className="form-label">
-                        Posisi
-                    </label>
+                    <label htmlFor="jabatan" className="form-label">Jabatan</label>
                     <input
                         type="text"
-                        id="posisi"
-                        name="posisi"
-                        value={formData.posisi}
+                        id="jabatan"
+                        name="jabatan"
+                        value={formData.jabatan}
                         onChange={handleInputChange}
-                        className={`form-control ${formErrors.posisi ? 'is-invalid' : ''}`}
-                        placeholder="Masukkan posisi"
+                        className={`form-control ${formErrors.jabatan ? 'is-invalid' : ''}`}
                     />
-                    {formErrors.posisi && <div className="invalid-feedback">{formErrors.posisi}</div>}
+                    {formErrors.jabatan && <div className="invalid-feedback">{formErrors.jabatan}</div>}
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="foto" className="form-label">
-                        Foto
-                    </label>
-                    <input
-                        type="file"
-                        id="foto"
-                        name="foto"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className={`form-control ${formErrors.foto ? 'is-invalid' : ''}`}
-                    />
-                    {formErrors.foto && <div className="invalid-feedback">{formErrors.foto}</div>}
+                    <label htmlFor="tipe" className="form-label">Tipe</label>
+                    <select
+                        id="tipe"
+                        name="tipe"
+                        value={formData.tipe}
+                        onChange={handleInputChange}
+                        className="form-control"
+                    >
+                        <option value="kepala">Kepala Balmon</option>
+                        <option value="kasubag">Umum</option>
+                        <option value="monev">Monev</option>
+                        <option value="penertiban">Penertiban</option>
+                        <option value="pelayanan">Pelayanan</option>
+                    </select>
                 </div>
 
-                <div className="d-grid">
-                    <button
-                        type="submit"
-                        className="btn btn-primary"
-                    >
-                        Simpan
-                    </button>
+                <div className="mb-3">
+                    <label htmlFor="file" className="form-label">Foto</label>
+                    <input
+                        type="file"
+                        id="file"
+                        name="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className={`form-control ${formErrors.file ? 'is-invalid' : ''}`}
+                    />
+                    {formErrors.file && <div className="invalid-feedback">{formErrors.file}</div>}
+                </div>
+
+                <div className="text-center">
+                    <button type="submit" className="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
     );
 };
 
-export default CreateProfile;
+export default CreateStrukturPengurus;

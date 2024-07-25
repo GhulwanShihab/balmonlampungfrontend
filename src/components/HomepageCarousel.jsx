@@ -22,7 +22,7 @@ const HomepageCarousel = ({ interval = 2000 }) => {
   }, []);
 
   return (
-    <div className="mt-5">
+    <div className="">
       {images.length > 0 && (
         <Carousel fade interval={interval} className="carousel-fade">
           {images.map((image, index) => (

@@ -7,6 +7,7 @@ import './index.css';
 import DaftarBerita from './pages/DaftarBerita.jsx';
 import BeritaDetail from './pages/BeritaDetail.jsx';
 import Profil from './pages/Profil.jsx';
+import Struktur from './pages/Struktur.jsx';
 import StrukturOrganisasi from './pages/StrukturOrganisasi.jsx';
 import MOTS from './pages/MOTS.jsx';
 import IAR from './pages/IAR.jsx';
@@ -25,9 +26,10 @@ import CMSHome from './cms/home';
 import BeritasTable from './cms/beritas';
 import CreateBerita from './cms/beritas/create';
 import UpdateBerita from './cms/beritas/update';
-import ProfilesTable from './cms/profile';
-import CreateProfile from './cms/profile/create';
-import UpdateProfile from './cms/profile/update';
+import IARTable from './cms/iar/index.jsx';
+import StrukturTable from './cms/strukturs/index.jsx';
+import CreateStrukturPengurus from './cms/strukturs/create.jsx';
+import UpdateStrukturPengurus from './cms/strukturs/update.jsx';
 import { AuthProvider } from './AuthContext.js';
 
 
@@ -41,14 +43,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/admin/berita" element={<AdminPrivateRoute component={BeritasTable}/>} />
             <Route path="/admin/berita/create" element={<AdminPrivateRoute component={CreateBerita}/>} />
             <Route path="/admin/berita/edit/:id" element={<AdminPrivateRoute component={UpdateBerita}/>} />
-            <Route path="/admin/profile" element={<AdminPrivateRoute component={ProfilesTable}/>} />
-            <Route path="/admin/profile/create" element={<AdminPrivateRoute component={CreateProfile}/>} />
-            <Route path="/admin/profile/edit/:id" element={<AdminPrivateRoute component={UpdateProfile}/>} />
+            <Route path="/admin/iar" element={<AdminPrivateRoute component={IARTable}/>} />
+            <Route path="/admin/struktur" element={<AdminPrivateRoute component={StrukturTable}/>} />
+            <Route path="/admin/struktur/create" element={<AdminPrivateRoute component={CreateStrukturPengurus}/>} />
+            <Route path="/admin/struktur/update" element={<AdminPrivateRoute component={UpdateStrukturPengurus}/>} />
 
             <Route path="/" element={<App />} />
             <Route path="/berita" element={<DaftarBerita />} />
             <Route path="/berita/:id" element={<BeritaDetail />} />
             <Route path="/profil" element={<Profil />} />
+            <Route path="/struktur-pengurus" element={<Struktur />} />
             <Route path="/struktur-organisasi" element={<StrukturOrganisasi />} />
             <Route path="/mots" element={<MOTS />} />
             <Route path="/iar" element={<IAR />} />

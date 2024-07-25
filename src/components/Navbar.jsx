@@ -18,7 +18,7 @@ const MyNavbar = () => {
 
   // Inline styles for top line
   const topLineStyle = {
-    height: '5px',
+    height: '10px',
     backgroundColor: 'darkblue',
   };
 
@@ -77,7 +77,7 @@ const MyNavbar = () => {
                   PROFIL
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/struktur-organisasi" style={navItemStyle}>Struktur Organisasi</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/struktur-pengurus" style={navItemStyle}>Struktur Organisasi</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/reformasi-birokrasi" style={navItemStyle}>Visi & Misi</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/reformasi-birokrasi" style={navItemStyle}>Tugas & Fungsi</Dropdown.Item>
                 </Dropdown.Menu>
